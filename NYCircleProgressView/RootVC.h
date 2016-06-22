@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RootVC.h
 //  NYCircleProgressView
 //
 //  Created by 牛严 on 16/6/20.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface RootVC : UIViewController
 
 @end
-
