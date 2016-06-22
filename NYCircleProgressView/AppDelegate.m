@@ -7,16 +7,27 @@
 //
 
 #import "AppDelegate.h"
+#import "RootVC.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) RootVC *rootVC;
 @end
 
 @implementation AppDelegate
 
+- (RootVC *)rootVC
+{
+    if (!_rootVC) {
+        _rootVC = [[RootVC alloc]init];
+    }
+    return _rootVC;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = self.rootVC;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

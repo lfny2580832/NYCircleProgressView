@@ -7,31 +7,39 @@
 //
 
 #import "RootVC.h"
+#import "NYCircleProgressView.h"
 
 @interface RootVC ()
+
+@property (nonatomic, strong) NYCircleProgressView *progressView;
+
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
 @implementation RootVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.progressView = [[NYCircleProgressView alloc]initWithFrame:CGRectMake(100, 100, 200, 200)];
+    self.progressView.targetProgress = 0.618f;
+    self.progressView.period = 24;
+    [self.view addSubview:self.progressView];
+    [self.progressView startAnimation];
+    
+    [self.view addSubview:self.button];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIButton *)button
+{
+    if (!_button) {
+        _button = [[UIButton alloc]initWithFrame:CGRectMake(30, 30, 100, 50)];
+        _button.backgroundColor = [UIColor blackColor];
+        [_button addTarget:self.progressView action:@selector(startAnimation) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _button;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
